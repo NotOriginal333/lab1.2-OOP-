@@ -8,17 +8,18 @@ private:
 
 	static int objectCount;
 public:
-	void Init();
-	void Init(int n);
-	void Init(int n, float value);
+	bool Init();
+	bool Init(int s);
+	bool Init(int s, float value);
 
 	void read();
 
 	int getSize() const { return size; };
 	int getState() const { return state; };
 	float getValue(int index) const;
+	static int getObjectCount() {return objectCount;};
 
-	void Display();
+	void Display() const;
 
 	float Max();
 	float Min();

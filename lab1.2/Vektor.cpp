@@ -1,5 +1,6 @@
 ﻿#include "Vektor.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -11,30 +12,99 @@ float Vektor::getValue(int index) const {
     return pointer[index];
 }
 
-void Vektor::Init() {
-    delete[] pointer;
+bool Vektor::Init() {
     pointer = new float[1];
-    pointer[0] = 0.0;
     size = 1;
-    state = 0;
+    if (pointer == nullptr) {
+        state = 1; // Error code for memory allocation failure
+        return false;
+    }
+    pointer[0] = 0.0f;
+    return true;
 }
 
-void Vektor::Init(int numElements) {
-    delete[] pointer;
-    pointer = new float[numElements];
-    for (int i = 0; i < numElements; ++i) {
+bool Vektor::Init(int s) {
+    if (s <= 0) {
+        state = 2; // Error code for invalid size
+        return false;
+    }
+    pointer = new float[s];
+    size = s;
+    if (pointer == nullptr) {
+        state = 1; // Error code for memory allocation failure
+        return false;
+    }
+    for (int i = 0; i < size; ++i) {
         pointer[i] = i;
     }
-    size = numElements;
-    state = 0;
+    return true;
 }
 
-void Vektor::Init(int numElements, float initValue) {
-    delete[] pointer;
-    pointer = new float[numElements];
-    for (int i = 0; i < numElements; ++i) {
-        pointer[i] = initValue;
+bool Vektor::Init(int s, float value) {
+    if (s <= 0) {
+        state = 2; // Error code for invalid size
+        return false;
     }
-    size = numElements;
-    state = 0;
+    pointer = new float[s];
+    size = s;
+    if (pointer == nullptr) {
+        state = 1; // Error code for memory allocation failure
+        return false;
+    }
+    for (int i = 0; i < size; ++i) {
+        pointer[i] = value;
+    }
+    return true;
 }
+
+void Vektor::read() {
+    for (int i = 0; i < size; ++i) {
+        cout << "Enter value for element " << i << ": ";
+        cin >> pointer[i];
+    }
+}
+
+void Vektor::Display() const {
+    cout << "Vector elements: ";
+    for (int i = 0; i < size; ++i) {
+        cout << pointer[i] << " ";
+    }
+    cout << std::endl;
+}
+
+float Vektor::Min() {
+    if (size == 0) {
+        state = 3; // Error code for empty vector
+        return 0.0f; // Return a default value
+    }
+    float min = pointer[0];
+    for (int i = 1; i < size; ++i) {
+        if (pointer[i] < min) {
+            min = pointer[i];
+        }
+    }
+    return min;
+}
+
+float Vektor::Max() {
+    if (size == 0) {
+        state = 3; // Error code for empty vector
+        return 0.0f; // Return a default value
+    }
+    float max = pointer[0];
+    for (int i = 1; i < size; ++i) {
+        if (pointer[i] > max) {
+            max = pointer[i];
+        }
+    }
+    return max;
+}
+
+void Vektor::SortAscending() {
+    sort(pointer, pointer + size);
+}
+
+void Vektor::SortDescending() {
+    sort(pointer, pointer + size, std::greater<float>());
+}
+
