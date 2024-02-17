@@ -19,6 +19,9 @@ public:
 	float getValue(int index) const;
 	static int getObjectCount() {return objectCount;};
 
+	void setSize(int s);
+	void setPointer(float* ptr, int s);
+
 	void Display() const;
 
 	float Max();

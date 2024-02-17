@@ -4,6 +4,23 @@
 
 using namespace std;
 
+void Vektor::setPointer(float* ptr, int s) {
+    if (ptr != nullptr && s > 0) {
+        pointer = ptr;
+        size = s;
+    }
+    else {
+        std::cerr << "Error: Invalid pointer or size" << std::endl;
+    }
+}
+
+void Vektor::setSize(int s) {
+    if (s > 0) {
+        size = s;
+    }
+    else size = 0;
+}
+
 float Vektor::getValue(int index) const {
     if (index < 0 || index >= size) {
         cerr << "Error: Index out of bounds\n";
@@ -34,7 +51,7 @@ bool Vektor::Init(int s) {
         state = 1; // Error code for memory allocation failure
         return false;
     }
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < s; i++) {
         pointer[i] = i;
     }
     return true;
@@ -51,14 +68,14 @@ bool Vektor::Init(int s, float value) {
         state = 1; // Error code for memory allocation failure
         return false;
     }
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < s; i++) {
         pointer[i] = value;
     }
     return true;
 }
 
 void Vektor::read() {
-    for (int i = 0; i < size; ++i) {
+    for (int i = 0; i < size; i++) {
         cout << "Enter value for element " << i << ": ";
         cin >> pointer[i];
     }
