@@ -14,5 +14,8 @@ Vektor makeDynamicVector(int size, float value) {
 }
 
 int main() {
+    Vektor vec1 = makeDynamicVector(3, 5.0f);
+    vec1.Display();
 
+    return 0;
 }
