@@ -2,15 +2,21 @@
 class Vektor
 {
 private:
-	float* flo;
-	int i;
+	float* pointer;
+	int size;
 	int state;
 
 	static int objectCount;
 public:
-	void init();
-	void init(int n);
-	void init(int n, float value);
+	void Init();
+	void Init(int n);
+	void Init(int n, float value);
+
+	void read();
+
+	int getSize() const { return size; };
+	int getState() const { return state; };
+	float getValue(int index) const;
 
 	void Display();
 
