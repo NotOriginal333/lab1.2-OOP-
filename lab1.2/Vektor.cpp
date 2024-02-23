@@ -34,47 +34,56 @@ float Vektor::getValue(int index) const {
 }
 
 bool Vektor::Init() {
-    pointer = new float[1];
+    float* pointerO;
+    pointerO = new float[1];
     size = 1;
-    if (pointer == nullptr) {
+    if (pointerO == nullptr) {
         setState(1); // Error code for memory allocation failure
         return false;
     }
-    pointer[0] = 0.0f;
+    pointerO[0] = 0.0f;
+    setPointer(pointerO, size);
+    //objectCount++;
     return true;
 }
 
 bool Vektor::Init(int s) {
+    float* pointerO;
     if (s <= 0) {
         setState(2); // Error code for invalid size
         return false;
     }
-    pointer = new float[s];
+    pointerO = new float[s];
     size = s;
-    if (pointer == nullptr) {
+    if (pointerO == nullptr) {
         setState(1); // Error code for memory allocation failure
         return false;
     }
     for (int i = 0; i < s; i++) {
-        pointer[i] = i;
+        pointerO[i] = i;
     }
+   // objectCount++;
+    setPointer(pointerO, s);
     return true;
 }
 
 bool Vektor::Init(int s, float value) {
+    float* pointerO;
     if (s <= 0) {
         setState(2); // Error code for invalid size
         return false;
     }
-    pointer = new float[s];
+    pointerO = new float[s];
     size = s;
-    if (pointer == nullptr) {
+    if (pointerO == nullptr) {
         setState(1); // Error code for memory allocation failure
         return false;
     }
     for (int i = 0; i < s; i++) {
-        pointer[i] = value;
+        pointerO[i] = value;
     }
+    setPointer(pointerO, s);
+    //objectCount++;
     return true;
 }
 

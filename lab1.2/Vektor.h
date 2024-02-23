@@ -6,7 +6,7 @@ private:
 	int size;
 	int state;
 
-	static int objectCount;
+	//static int objectCount;
 public:
 	bool Init();
 	bool Init(int);
@@ -17,7 +17,7 @@ public:
 	int getSize() const { return size; };
 	int getState() const { return state; };
 	float getValue(int index) const;
-	static int getObjectCount() {return objectCount;};
+	//static int getObjectCount() {return objectCount;};
 
 	void setSize(int);
 	void setPointer(float*, int);
@@ -31,6 +31,6 @@ public:
 	void SortAscending();
 	void SortDescending();
 
-	static int ObjectCount();
+	//static int ObjectCount();
 };
 
