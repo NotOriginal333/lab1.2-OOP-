@@ -37,10 +37,5 @@ namespace UnitTest1
 			Assert::AreEqual(3.0f, test22);
 			Assert::AreEqual(3.0f, test23);
 		}
-		TEST_METHOD(TestMaxMin) {
-			Vektor vec;
-			vec.setPointer();
-
-		}
 	};
 }

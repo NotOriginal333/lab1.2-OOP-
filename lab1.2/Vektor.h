@@ -9,18 +9,19 @@ private:
 	static int objectCount;
 public:
 	bool Init();
-	bool Init(int s);
-	bool Init(int s, float value);
+	bool Init(int);
+	bool Init(int, float);
 
-	void read();
+	void read(int);
 
 	int getSize() const { return size; };
 	int getState() const { return state; };
 	float getValue(int index) const;
 	static int getObjectCount() {return objectCount;};
 
-	void setSize(int s);
-	void setPointer(float* ptr, int s);
+	void setSize(int);
+	void setPointer(float*, int);
+	void setState(int);
 
 	void Display() const;
 

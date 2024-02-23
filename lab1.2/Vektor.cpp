@@ -4,6 +4,10 @@
 
 using namespace std;
 
+void Vektor::setState(int n) {
+    state = n;
+}
+
 void Vektor::setPointer(float* ptr, int s) {
     if (ptr != nullptr && s > 0) {
         pointer = ptr;
@@ -33,7 +37,7 @@ bool Vektor::Init() {
     pointer = new float[1];
     size = 1;
     if (pointer == nullptr) {
-        state = 1; // Error code for memory allocation failure
+        setState(1); // Error code for memory allocation failure
         return false;
     }
     pointer[0] = 0.0f;
@@ -42,13 +46,13 @@ bool Vektor::Init() {
 
 bool Vektor::Init(int s) {
     if (s <= 0) {
-        state = 2; // Error code for invalid size
+        setState(2); // Error code for invalid size
         return false;
     }
     pointer = new float[s];
     size = s;
     if (pointer == nullptr) {
-        state = 1; // Error code for memory allocation failure
+        setState(1); // Error code for memory allocation failure
         return false;
     }
     for (int i = 0; i < s; i++) {
@@ -59,13 +63,13 @@ bool Vektor::Init(int s) {
 
 bool Vektor::Init(int s, float value) {
     if (s <= 0) {
-        state = 2; // Error code for invalid size
+        setState(2); // Error code for invalid size
         return false;
     }
     pointer = new float[s];
     size = s;
     if (pointer == nullptr) {
-        state = 1; // Error code for memory allocation failure
+        setState(1); // Error code for memory allocation failure
         return false;
     }
     for (int i = 0; i < s; i++) {
@@ -74,8 +78,9 @@ bool Vektor::Init(int s, float value) {
     return true;
 }
 
-void Vektor::read() {
-    for (int i = 0; i < size; i++) {
+void Vektor::read(int s) {
+    setSize(s);
+    for (int i = 0; i < s; i++) {
         cout << "Enter value for element " << i << ": ";
         cin >> pointer[i];
     }
@@ -84,14 +89,14 @@ void Vektor::read() {
 void Vektor::Display() const {
     cout << "Vector elements: ";
     for (int i = 0; i < size; ++i) {
-        cout << pointer[i] << " ";
+        cout << getValue(i) << " ";
     }
     cout << std::endl;
 }
 
 float Vektor::Min() {
     if (size == 0) {
-        state = 3; // Error code for empty vector
+        setState(3); // Error code for empty vector
         return 0.0f; // Return a default value
     }
     float min = pointer[0];
@@ -105,7 +110,7 @@ float Vektor::Min() {
 
 float Vektor::Max() {
     if (size == 0) {
-        state = 3; // Error code for empty vector
+        setState(3); // Error code for empty vector
         return 0.0f; // Return a default value
     }
     float max = pointer[0];

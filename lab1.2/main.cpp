@@ -1,42 +1,44 @@
+﻿#include <iostream>
 #include "Vektor.h"
-#include <iostream>
-#include <algorithm>
-
-using namespace std;
-
-Vektor makeDynamicVector(int size, float value) {
-    Vektor vec;
-    if (!vec.Init(size, value)) {
-        cerr << "Error: Unable to create DynamicVector object. Invalid size or memory allocation failure." << std::endl;
-        exit(1);
-    }
-    return vec;
-}
 
 int main() {
-    Vektor vec1 = makeDynamicVector(2, 5.0f);
-    vec1.Display();
+    // Ініціалізація об'єкта v1 з використанням методу Init() без параметрів
+    Vektor v1;
+    v1.Init();
 
-    /*Vektor vec2;
-    vec2.read(3);
-    vec2.Display();
-    vec2.Max();
-    vec2.Min();
-    vec2.SortAscending();
-    vec2.Display();
-    vec2.Display();
-    vec2.SortDescending();*/ //don`t work!!!
+    // Ініціалізація об'єкта v2 з використанням методу Init() з одним параметром
+    Vektor v2;
+    v2.Init(5);
 
-    /*Vektor vec3;
-    vec3.Init();
-    vec3.Display();
-    vec3.read();
-    vec3.Display();*/ //work
+    // Ініціалізація об'єкта v3 з використанням методу Init() з двома параметрами
+    Vektor v3;
+    v3.Init(3, 2.5);
 
-    Vektor vec4;
-    vec4.Init(3);
-    vec4.Display();
-    vec4.read();
-    vec4.Display();
+    // Введення значень для об'єкта v1
+    v1.read(3);
+
+    // Виведення значень об'єктів
+    std::cout << "v1: "; v1.Display();
+    std::cout << "v2: "; v2.Display();
+    std::cout << "v3: "; v3.Display();
+
+    // Виведення мінімального та максимального значень для об'єктів
+    std::cout << "Min value of v1: " << v1.Min() << std::endl;
+    std::cout << "Max value of v1: " << v1.Max() << std::endl;
+    std::cout << "Min value of v2: " << v2.Min() << std::endl;
+    std::cout << "Max value of v2: " << v2.Max() << std::endl;
+    std::cout << "Min value of v3: " << v3.Min() << std::endl;
+    std::cout << "Max value of v3: " << v3.Max() << std::endl;
+
+    // Сортування об'єктів
+    v1.SortAscending();
+    v2.SortDescending();
+    v3.SortAscending();
+
+    // Виведення відсортованих значень
+    std::cout << "Sorted v1 (ascending): "; v1.Display();
+    std::cout << "Sorted v2 (descending): "; v2.Display();
+    std::cout << "Sorted v3 (ascending): "; v3.Display();
+
     return 0;
 }
